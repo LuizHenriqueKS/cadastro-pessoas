@@ -13,13 +13,13 @@
 
 	<groupId>br.zul.crud</groupId>
 	<artifactId>person-crud-backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>person-crud-backend</name>
 	<description>API de cadastro de pessoas</description>
 
 	<properties>
-		<java.version>17</java.version>
-	</properties>
+		<java.version>11</java.version> 
+  </properties>
 
 	<dependencies>
 		<dependency>

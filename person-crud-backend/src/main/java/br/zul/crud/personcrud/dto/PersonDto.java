@@ -1,4 +1,4 @@
-package br.zul.crud.personcrud.model.response;
+package br.zul.crud.personcrud.dto;
 
 import java.time.LocalDate;
 
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonCreateResponseBody {
+public class PersonDto {
 
   private Long id;
   private String firstName;

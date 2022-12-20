@@ -1,2 +1,12 @@
 server:
   port: 7000
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/person-crud
+    username: postuser
+    password: postpass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update

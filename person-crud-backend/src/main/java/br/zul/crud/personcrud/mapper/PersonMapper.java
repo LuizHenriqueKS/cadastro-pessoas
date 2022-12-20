@@ -1,15 +1,17 @@
 package br.zul.crud.personcrud.mapper;
 
-import org.springframework.stereotype.Component;
+import java.util.List;
 
+import br.zul.crud.personcrud.dto.PersonDto;
 import br.zul.crud.personcrud.entity.Person;
-import br.zul.crud.personcrud.model.response.PersonCreateResponseBody;
+import br.zul.crud.personcrud.model.request.PersonCreateRequestBody;
 
-@Component
 public interface PersonMapper {
 
-  Person from(PersonCreateResponseBody requestBody);
+  Person from(PersonCreateRequestBody requestBody);
 
-  PersonCreateResponseBody toResponseBody(Person person);
+  PersonDto toResponseBody(Person person);
+
+  List<PersonDto> toResponseBody(List<Person> person);
 
 }

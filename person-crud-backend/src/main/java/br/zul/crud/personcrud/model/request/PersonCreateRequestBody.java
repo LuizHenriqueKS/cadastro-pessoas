@@ -2,8 +2,9 @@ package br.zul.crud.personcrud.model.request;
 
 import java.time.LocalDate;
 
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +18,8 @@ import lombok.NoArgsConstructor;
 public class PersonCreateRequestBody {
 
   @NotNull
-  @Min(3)
+  @NotEmpty
+  @Size(min = 3)
   private String firstName;
   private String lastName;
   private LocalDate birthDate;

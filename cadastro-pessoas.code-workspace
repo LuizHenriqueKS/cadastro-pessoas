@@ -5,11 +5,27 @@
 		},
 		{
 			"path": "person-crud-backend"
+		},
+		{
+			"path": "person-crud-frontend"
 		}
 	],
 	"settings": {
 		"editor.formatOnSave": true,
 		"editor.tabSize": 2,
-		"java.configuration.updateBuildConfiguration": "interactive"
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.compile.nullAnalysis.mode": "disabled"
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"type": "java",
+				"name": "Launch PersonCrudApplication",
+				"request": "launch",
+				"mainClass": "br.zul.crud.personcrud.PersonCrudApplication",
+				"projectName": "person-crud-backend"
+			}
+		]
 	}
 }
