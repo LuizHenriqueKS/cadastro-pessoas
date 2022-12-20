@@ -2,6 +2,7 @@ package br.zul.crud.personcrud.it;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,8 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ActiveProfiles;
 
 import br.zul.crud.personcrud.dto.PersonDto;
@@ -22,6 +25,7 @@ import br.zul.crud.personcrud.repository.PersonRepository;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureTestDatabase
+@DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 @ActiveProfiles("test")
 public class PersonIT {
 
@@ -77,6 +81,23 @@ public class PersonIT {
     Assertions.assertThat(firstResult.getFirstName()).isEqualTo(personEx1.getFirstName());
     Assertions.assertThat(firstResult.getLastName()).isEqualTo(personEx1.getLastName());
     Assertions.assertThat(firstResult.getBirthDate()).isEqualTo(personEx1.getBirthDate());
+  }
+
+  @Test
+  public void deleteById_ReturnsNoContent_WhenSuccessful() throws Exception {
+    Person personEx1 = Person.builder()
+        .firstName("Zul")
+        .lastName("Root")
+        .birthDate(LocalDate.of(1990, 10, 5))
+        .build();
+    personRepository.save(personEx1);
+
+    ResponseEntity<Void> response = testRestTemplate.exchange("/api/v1/person/" + personEx1.getId(),
+        HttpMethod.DELETE, null, Void.class);
+
+    Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+    Optional<Person> optional = personRepository.findById(personEx1.getId());
+    Assertions.assertThat(optional).isNotPresent();
   }
 
 }

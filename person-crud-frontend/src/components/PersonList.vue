@@ -18,6 +18,9 @@
           <th>
             Data de nascimento
           </th>
+          <th>
+            Ações
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -25,7 +28,10 @@
           <td>{{ person.id }}</td>
           <td>{{ person.firstName }}</td>
           <td>{{ person.lastName }}</td>
-          <td>{{ person.birthDate }}</td>
+          <td>{{ formatDate(person.birthDate) }}</td>
+          <td>
+            <v-btn icon="mdi-delete" elevation="0" size="small" title="Deletar" @click="deletePerson(person)" />
+          </td>
         </tr>
       </tbody>
     </v-table>
@@ -52,6 +58,21 @@ export default defineComponent({
         this.personList = await response.json();
       } finally {
         this.loading = false;
+      }
+    },
+    formatDate(date) {
+      if (!date) return date;
+      const [year, month, day] = date.split('-');
+      return `${day}/${month}/${year}`;
+    },
+    async deletePerson(person) {
+      if (confirm(`Tem certeza que deseja deletar "${person.firstName}"?`)) {
+        try {
+          this.loading = true;
+          await fetch('/api/v1/person/' + person.id, { method: 'DELETE' });
+        } finally {
+          this.loadPersonList();
+        }
       }
     }
   }

@@ -32,6 +32,13 @@ public class PersonServiceTests {
   private PersonMapperImpl personMapper;
 
   @Test
+  public void deleteById_ReturnsVoid_WhenSuccessful() {
+    Long expectedId = 100L;
+    personService.deleteById(expectedId);
+    Mockito.verify(personRepository).deleteById(expectedId);
+  }
+
+  @Test
   public void create_ReturnsOnePerson_WhenSuccessful() {
     PersonCreateRequestBody requestBody = PersonCreateRequestBody.builder()
         .firstName("Luiz")

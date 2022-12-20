@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-app-bar elevation="1">
+      <v-app-bar-title>Cadastro de pessoas</v-app-bar-title>
       <template v-slot:append>
         <v-btn icon="mdi-plus" @click="$router.push({ name: 'AddPerson' })" v-if="displayPlusBtn" />
         <v-btn icon="mdi-close" @click="$router.push('/')" v-else />
@@ -27,3 +28,4 @@ export default defineComponent({
   }
 });
 </script>
+<v-app-bar-title></v-app-bar-title>

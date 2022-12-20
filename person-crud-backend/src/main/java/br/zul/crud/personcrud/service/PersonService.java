@@ -31,4 +31,8 @@ public class PersonService {
     return personMapper.toResponseBody(result);
   }
 
+  public void deleteById(Long id) {
+    personRepository.deleteById(id);
+  }
+
 }
