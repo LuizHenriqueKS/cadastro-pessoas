@@ -6,7 +6,7 @@
       <v-text-field label="Data de nascimento" color="primary" variant="underlined" v-model="birthDate" type="date" />
       <div class=" personEdit__btns">
         <v-btn color="primary" :loading="saving" @click="save">Salvar</v-btn>
-        <v-btn>Cancelar</v-btn>
+        <v-btn @click="$router.push('/')">Cancelar</v-btn>
       </div>
     </div>
   </div>
